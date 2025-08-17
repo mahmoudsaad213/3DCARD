@@ -15,7 +15,7 @@ from telegram.ext import (
 )
 
 # Configuration from environment variables
-TOKEN = os.getenv('BOT_TOKEN', "8250645789:AAEU-K2XUtyVVCmQcI3dJAWNMwPC1uhsZ_s")
+TOKEN = os.getenv('BOT_TOKEN', "8454654027:AAFks9nh8YFGPNBnxBgNo8UA26yTbevGADs")
 DATABASE_URL = os.getenv('DATABASE_URL')
 MAX_CARDS_PER_SESSION = 50
 CHECK_DELAY = 1.5
