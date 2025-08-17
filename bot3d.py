@@ -336,14 +336,17 @@ class TelegramBot:
     
     def get_results_keyboard(self, session: UserSession) -> InlineKeyboardMarkup:
         """Results view keyboard"""
-        keyboard = [
+        keyboard =  [
             [InlineKeyboardButton("✅ View Approved", callback_data="show_approved")],
             [InlineKeyboardButton("❌ View Rejected", callback_data="show_rejected")],
             [InlineKeyboardButton("⚠️ View Errors", callback_data="show_errors")],
             [InlineKeyboardButton("📥 Download All", callback_data="download")],
-            [InlineKeyboardButton        ]
+            [InlineKeyboardButton]]
         return InlineKeyboardMarkup(keyboard)
+
+
     
+         
     def get_rejected_navigation_keyboard(self, current: int, total: int) -> InlineKeyboardMarkup:
         """Navigation keyboard for rejected cards"""
         keyboard = []
