@@ -16,10 +16,10 @@ from telegram.ext import (
 )
 
 # Configuration
-TOKEN = "8454654027:AAGF0kVGZlYTVs5qADs3zSwN3pmdH5rqNQ8"
-ADMIN_ID = 5895491379
+TOKEN = os.getenv("TOKEN", "8454654027:AAGF0kVGZlYTVs5qADs3zSwN3pmdH5rqNQ8")
+ADMIN_ID = int(os.getenv("ADMIN_ID", "5895491379"))
 PAYMENT_CONTACT = "@Bangladesh3456"
-CHECK_DELAY = 10  # 10 seconds between checks
+CHECK_DELAY = 10
 DATA_FILE = "users_data.json"
 
 # Subscription plans
