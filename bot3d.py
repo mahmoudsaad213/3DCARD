@@ -342,7 +342,8 @@ class TelegramBot:
 
         if not is_user_subscribed(user_id):
             await update.message.reply_text(
-                "🔒 *Access Denied*\"You are not subscribed to use this bot. Please contact the administrator to gain access.",
+                "🔒 *Access Denied*\n\n"
+                "You are not subscribed to use this bot. Please contact the administrator to gain access.",
                 parse_mode="Markdown"
             )
             return
@@ -617,6 +618,10 @@ def main():
     logger.info("Bot is running...")
     
     try:
-        app.run_polling(drop_pending_updates=True)  # إضافة drop_pending_updates
+        app.run_polling(drop_pending_updates=True)
     except Exception as e:
         logger.error(f"Error running bot: {e}")
+
+
+if __name__ == "__main__":
+    main()
