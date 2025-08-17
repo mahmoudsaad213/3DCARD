@@ -601,13 +601,22 @@ def main():
     bot = TelegramBot()
     app = ApplicationBuilder().token(TOKEN).build()
     
+    # Add error handler for conflicts
+    async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Log the error and send a telegram message to notify the developer."""
+        logger.error(f"Exception while handling an update: {context.error}")
+        if "Conflict" in str(context.error):
+            logger.warning("Bot conflict detected - another instance might be running")
+    
+    app.add_error_handler(error_handler)
+    
     app.add_handler(CommandHandler("start", bot.start_command))
     app.add_handler(CallbackQueryHandler(bot.callback_handler))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, bot.admin_message_handler))
     
     logger.info("Bot is running...")
-    app.run_polling()
-
-
-if __name__ == "__main__":
-    main()
+    
+    try:
+        app.run_polling(drop_pending_updates=True)  # إضافة drop_pending_updates
+    except Exception as e:
+        logger.error(f"Error running bot: {e}")
