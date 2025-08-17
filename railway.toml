@@ -1,32 +1,7 @@
-# railway.toml
 [build]
 builder = "NIXPACKS"
 
 [deploy]
-startCommand = "python bot3d.py"
+startCommand = "python bot.py"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
-
----
-
-# Procfile (for Heroku compatibility)
-worker: python bot3d.py
-
----
-
-# runtime.txt (Python version)
-python-3.11.0
-
----
-
-# .env (Environment Variables - DON'T UPLOAD TO GITHUB)
-TOKEN=8454654027:AAGF0kVGZlYTVs5qADs3zSwN3pmdH5rqNQ8
-ADMIN_ID=5895491379
-
----
-
-# Updated requirements.txt with versions
-python-telegram-bot==20.7
-requests==2.31.0
-beautifulsoup4==4.12.2
-aiofiles==23.2.1
