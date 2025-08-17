@@ -2,11 +2,11 @@ import logging
 import asyncio
 import io
 import json
+import os
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
-import os
-from dotenv import load_dotenv
+
 import requests
 from bs4 import BeautifulSoup
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, BotCommand
@@ -19,7 +19,7 @@ from telegram.ext import (
 TOKEN = os.getenv("TOKEN", "8454654027:AAGF0kVGZlYTVs5qADs3zSwN3pmdH5rqNQ8")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "5895491379"))
 PAYMENT_CONTACT = "@Bangladesh3456"
-CHECK_DELAY = 10
+CHECK_DELAY = 10  # 10 seconds between checks
 DATA_FILE = "users_data.json"
 
 # Subscription plans
@@ -868,14 +868,6 @@ def main():
     
     bot = TelegramBot()
     app = ApplicationBuilder().token(TOKEN).build()
-    
-    # Set bot commands
-    commands = [
-        BotCommand("start", "بدء استخدام البوت"),
-        BotCommand("admin", "لوحة الإدارة (للمطور فقط)")
-    ]
-    
-    asyncio.create_task(app.bot.set_my_commands(commands))
     
     # Command handlers
     app.add_handler(CommandHandler("start", bot.start_command))
